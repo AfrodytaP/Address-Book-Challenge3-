@@ -106,5 +106,16 @@ public class ValidationTest {
             assertEquals(expectedMessage, assertThrows(IllegalArgumentException.class, () -> Validation.validatePhoneNumber(testString)).getMessage());
         }
 
+        @Test
+        @Description("Requirement 1 - Test 11) Tests the validatePhoneNumber() returns phoneNumber String when input is valid")
+        public void testValidatePhoneNumberReturnsPhoneNumberWhenInputIsValid() {
+            // Arrange
+            String testString = "07233222223";
+            String expectedMessage = "07233222223";
+            // Act
+            // Assert
+            assertEquals(expectedMessage,Validation.validatePhoneNumber(testString));
+        }
+
     }
 }

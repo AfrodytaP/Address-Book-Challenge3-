@@ -14,7 +14,7 @@ public class Validation {
 
     public static String validatePhoneNumber(String phoneNumber) {
         if (isStringNullOrEmpty(phoneNumber)) throw new IllegalArgumentException("Phone number cannot be null or empty");
-        if(!phoneNumber.matches("^07\\d{9}[0-9]+$")) throw new IllegalArgumentException("Phone number can only contain numbers and must start with 07 and be 11 digits long");
+        if(!phoneNumber.matches("^07\\d{9}$")) throw new IllegalArgumentException("Phone number can only contain numbers and must start with 07 and be 11 digits long");
         return phoneNumber;
     }
 
