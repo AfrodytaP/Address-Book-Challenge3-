@@ -128,5 +128,15 @@ public class ValidationTest {
             assertEquals(expectedMessage, assertThrows(IllegalArgumentException.class, () -> Validation.validateEmail(testString)).getMessage());
         }
 
+        @Test
+        @Description("Requirement 1 - Test 13) Tests the validateEmail() returns Exception message when input is not valid")
+        public void testValidateEmailReturnsMessageWhenEmailInputIsNotValid() {
+            // Arrange
+            String testString = "afrodyta.com";
+            String expectedMessage = "Email is not valid";
+            // Act
+            // Assert
+            assertEquals(expectedMessage, assertThrows(IllegalArgumentException.class, () -> Validation.validateEmail(testString)).getMessage());
+        }
     }
 }

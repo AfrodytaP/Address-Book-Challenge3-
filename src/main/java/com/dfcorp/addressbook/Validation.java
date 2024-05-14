@@ -20,6 +20,7 @@ public class Validation {
 
     public static String validateEmail(String email) {
         if (isStringNullOrEmpty(email)) throw new IllegalArgumentException("Email cannot be null or empty");
+        if(!email.matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}$")) throw new IllegalArgumentException("Email is not valid");
         return email;
     }
 
