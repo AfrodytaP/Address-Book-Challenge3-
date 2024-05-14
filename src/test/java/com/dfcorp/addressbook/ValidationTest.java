@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class ValidationTest {
     @Nested
     @DisplayName("Validation Tests")
-    class ValidationTests{
+    class ValidationTests {
 
         @Test
         @Description("Requirement 1 - Test 2) Tests the isStringNullOrEmpty() return true when null input")
@@ -41,6 +41,15 @@ public class ValidationTest {
             assertFalse(Validation.isStringNullOrEmpty(testString));
         }
 
+        @Test
+        @Description("Requirement 1 - Test 5) Tests the validateName() throws Exception when input is not valid")
+        public void testValidateNameWhenInputIsNotValid() {
+            // Arrange
+            String testString = "";
+            // Act
+            // Assert
+            assertThrows(IllegalArgumentException.class, () -> Validation.validateName(testString));
+        }
 
     }
 }
