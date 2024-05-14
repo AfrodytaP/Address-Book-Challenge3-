@@ -6,7 +6,6 @@ import org.junit.jupiter.api.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
 
 public class AddressBookTest {
     @Nested
@@ -63,6 +62,17 @@ public class AddressBookTest {
             assertThrows(IllegalArgumentException.class, () ->{
                 testAddressBook.addContact(mockContact);
             });
+        }
+
+        @Test
+        @Description("Requirement 2 - Test 4) Tests the addContact() contacts length increase by 1 when contact is added")
+        public void testAddContactContactsArrayLengthIncreaseByOneWithValidContact() {
+            // Arrange
+            // Act
+            testAddressBook.addContact(mockContact);
+            // Assert
+            assertEquals(1, testAddressBook.getContacts().size());
+
         }
 
     }
