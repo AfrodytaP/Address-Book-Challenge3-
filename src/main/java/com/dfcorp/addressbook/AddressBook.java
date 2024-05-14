@@ -5,14 +5,14 @@ import java.util.ArrayList;
 public class AddressBook {
     private static int nextID = 1;
     protected int userId;
-    private ArrayList<String> contacts = new ArrayList<>();
+    private ArrayList<Contact> contacts = new ArrayList<>();
 
     public AddressBook(){
         this.userId = nextID++;
         contacts = new ArrayList<>();
     }
 
-    public ArrayList<String>getContacts(){
+    public ArrayList<Contact>getContacts(){
         return contacts;
     }
 
@@ -20,6 +20,8 @@ public class AddressBook {
         return userId;
     }
 
-
-
+    public void addContact(Contact contact) {
+        Validation.isContactValid(contact);
+        contacts.add(contact);
+    }
 }

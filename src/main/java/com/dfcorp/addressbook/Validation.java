@@ -1,6 +1,6 @@
 package com.dfcorp.addressbook;
 
-public class Validation {
+public abstract class Validation {
 
     public static boolean isStringNullOrEmpty(String string) {
         return string == null || string.trim().isEmpty();
@@ -22,6 +22,11 @@ public class Validation {
         if (isStringNullOrEmpty(email)) throw new IllegalArgumentException("Email cannot be null or empty");
         if(!email.matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}$")) throw new IllegalArgumentException("Email is not valid");
         return email;
+    }
+
+    public static Contact isContactValid(Contact contact) {
+        if(contact == null) throw new IllegalArgumentException("Contact cannot be null");
+        return contact;
     }
 
 
