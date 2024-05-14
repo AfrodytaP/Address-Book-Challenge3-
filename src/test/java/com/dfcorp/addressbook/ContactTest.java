@@ -1,4 +1,4 @@
-package com.dfcorp.addressbookapp;
+package com.dfcorp.addressbook;
 
 import jdk.jfr.Description;
 import org.junit.jupiter.api.DisplayName;
@@ -18,16 +18,18 @@ public class ContactTest {
         @Description("Requirement 1 - Test 1) Tests the contact constructor sets values when valid")
         public void testConstructorSetsValuesWhenValid() {
             // Arrange
-            String testName = "Afrodyta Pudlo";
+            String testFirstName = "Afrodyta";
+            String testLastName = "Pudlo";
             String testPhoneNumber = "07878765342";
             String testEmail = "afrodyta@hotmail.com";
 
             // Act
-            Contact testContact = new Contact(testName, testPhoneNumber, testEmail);
+            Contact testContact = new Contact(testFirstName, testLastName, testPhoneNumber, testEmail);
 
             // Assert
             assertAll("Constructor sets values when valid",
-                    () -> assertEquals(testName, testContact.getName()),
+                    () -> assertEquals(testFirstName, testContact.getFirstName()),
+                    () -> assertEquals(testLastName, testContact.getLastName()),
                     () -> assertEquals(testPhoneNumber, testContact.getPhoneNumber()),
                     () -> assertEquals(testEmail, testContact.getEmail()));
         }
