@@ -18,6 +18,11 @@ public class Validation {
         return phoneNumber;
     }
 
+    public static String validateEmail(String email) {
+        if (isStringNullOrEmpty(email)) throw new IllegalArgumentException("Email cannot be null or empty");
+        return email;
+    }
+
 
 
 }

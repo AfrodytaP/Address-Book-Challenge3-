@@ -117,5 +117,16 @@ public class ValidationTest {
             assertEquals(expectedMessage,Validation.validatePhoneNumber(testString));
         }
 
+        @Test
+        @Description("Requirement 1 - Test 12) Tests the validateEmail() returns Exception message when input is not valid")
+        public void testValidateEmailReturnsMessageWhenInputIsNotValid() {
+            // Arrange
+            String testString = "";
+            String expectedMessage = "Email cannot be null or empty";
+            // Act
+            // Assert
+            assertEquals(expectedMessage, assertThrows(IllegalArgumentException.class, () -> Validation.validateEmail(testString)).getMessage());
+        }
+
     }
 }
