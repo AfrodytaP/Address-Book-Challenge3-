@@ -75,6 +75,17 @@ public class AddressBookTest {
 
         }
 
+        @Test
+        @Description("Requirement 2 - Test 5) Tests the addContact() adds given contact object to the Contacts array")
+        public void testAddContactAddsGivenObjectToContacts() {
+            // Arrange
+            // Act
+            testAddressBook.addContact(mockContact);
+            // Assert
+            assertEquals(mockContact, testAddressBook.getContacts().get(0));
+
+        }
+
     }
 
 }
