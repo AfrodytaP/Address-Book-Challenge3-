@@ -73,5 +73,16 @@ public class ValidationTest {
             assertEquals(expectedMessage, assertThrows(IllegalArgumentException.class, () -> Validation.validateName(testString)).getMessage());
         }
 
+        @Test
+        @Description("Requirement 1 - Test 8) Tests the validateName() returns name when input is valid")
+        public void testValidateNameReturnsNameWhenInputIsValid() {
+            // Arrange
+            String testString = "afrodyta";
+            String expectedMessage = "afrodyta";
+            // Act
+            // Assert
+            assertEquals(expectedMessage, Validation.validateName(testString));
+        }
+
     }
 }
