@@ -62,5 +62,16 @@ public class ValidationTest {
             assertEquals(expectedMessage, assertThrows(IllegalArgumentException.class, () -> Validation.validateName(testString)).getMessage());
         }
 
+        @Test
+        @Description("Requirement 1 - Test 7) Tests the validateName() returns Exception message when input is not valid")
+        public void testValidateNameReturnsMessageWhenInputHasNonLetters() {
+            // Arrange
+            String testString = "afrodyta1!";
+            String expectedMessage = "Name can only contain letters";
+            // Act
+            // Assert
+            assertEquals(expectedMessage, assertThrows(IllegalArgumentException.class, () -> Validation.validateName(testString)).getMessage());
+        }
+
     }
 }

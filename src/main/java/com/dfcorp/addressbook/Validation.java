@@ -8,9 +8,9 @@ public class Validation {
 
     public static String validateName(String name) {
         if (isStringNullOrEmpty(name)) throw new IllegalArgumentException("Name cannot be null or empty");
+        if(!name.matches("^[a-zA-Z]+$")) throw new IllegalArgumentException("Name can only contain letters");
         return name;
     }
-
 
 
 
