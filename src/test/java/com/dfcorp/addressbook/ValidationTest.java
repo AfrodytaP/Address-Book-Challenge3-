@@ -51,5 +51,16 @@ public class ValidationTest {
             assertThrows(IllegalArgumentException.class, () -> Validation.validateName(testString));
         }
 
+        @Test
+        @Description("Requirement 1 - Test 6) Tests the validateName() returns Exception message when input is not valid")
+        public void testValidateNameReturnsMessageWhenInputIsNotValid() {
+            // Arrange
+            String testString = "";
+            String expectedMessage = "Name cannot be null or empty";
+            // Act
+            // Assert
+            assertEquals(expectedMessage, assertThrows(IllegalArgumentException.class, () -> Validation.validateName(testString)).getMessage());
+        }
+
     }
 }
