@@ -95,5 +95,16 @@ public class ValidationTest {
             assertEquals(expectedMessage, assertThrows(IllegalArgumentException.class, () -> Validation.validatePhoneNumber(testString)).getMessage());
         }
 
+        @Test
+        @Description("Requirement 1 - Test 10) Tests the validatePhoneNumber() returns Exception message when input is not valid")
+        public void testValidatePhoneNumberReturnsMessageWhenInputHasNonNumbers() {
+            // Arrange
+            String testString = "07e23322222!";
+            String expectedMessage = "Phone number can only contain numbers and must start with 07 and be 11 digits long";
+            // Act
+            // Assert
+            assertEquals(expectedMessage, assertThrows(IllegalArgumentException.class, () -> Validation.validatePhoneNumber(testString)).getMessage());
+        }
+
     }
 }
