@@ -31,6 +31,16 @@ public class ValidationTest {
             assertTrue(Validation.isStringNullOrEmpty(testString));
         }
 
+        @Test
+        @Description("Requirement 1 - Test 4) Tests the isStringNullOrEmpty() return false when input is valid")
+        public void testIsStringNullOrEmptyInputIsValid() {
+            // Arrange
+            String testString = "Afrodyta";
+            // Act
+            // Assert
+            assertFalse(Validation.isStringNullOrEmpty(testString));
+        }
+
 
     }
 }

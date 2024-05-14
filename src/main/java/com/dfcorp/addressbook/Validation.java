@@ -6,4 +6,8 @@ public class Validation {
         return string == null || string.trim().isEmpty();
     }
 
+
+
+
+
 }
