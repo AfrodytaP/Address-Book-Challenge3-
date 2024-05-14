@@ -22,6 +22,17 @@ public class AddressBookTest {
             assertEquals(testAddressBook.getContacts().size(), 0);
         }
 
+        @Test
+        @Description("Requirement 2 - Test 2) Tests the addressBook UserID changes when a new address book is instantiated")
+        public void testUserIdIncrementsWhenNewAddressBookIsInstantiated() {
+            // Arrange
+            AddressBook testAddressBook = new AddressBook();
+            AddressBook testAddressBook2 = new AddressBook();
+            // Act
+            // Assert
+            assertEquals(testAddressBook2.getUserId(), 2);
+        }
+
 
     }
 
