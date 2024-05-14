@@ -84,5 +84,16 @@ public class ValidationTest {
             assertEquals(expectedMessage, Validation.validateName(testString));
         }
 
+        @Test
+        @Description("Requirement 1 - Test 9) Tests the validatePhoneNumber() returns Exception message when input is not valid")
+        public void testValidatePhoneNumberReturnsMessageWhenInputIsNotValid() {
+            // Arrange
+            String testString = "";
+            String expectedMessage = "Phone number cannot be null or empty";
+            // Act
+            // Assert
+            assertEquals(expectedMessage, assertThrows(IllegalArgumentException.class, () -> Validation.validatePhoneNumber(testString)).getMessage());
+        }
+
     }
 }

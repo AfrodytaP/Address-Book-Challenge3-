@@ -12,6 +12,11 @@ public class Validation {
         return name;
     }
 
+    public static String validatePhoneNumber(String phoneNumber) {
+        if (isStringNullOrEmpty(phoneNumber)) throw new IllegalArgumentException("Phone number cannot be null or empty");
+        return phoneNumber;
+    }
+
 
 
 }
