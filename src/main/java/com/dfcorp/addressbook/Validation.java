@@ -26,8 +26,13 @@ public abstract class Validation {
         return email;
     }
 
-    public static void isContactNull( Contact contact) {
-        if(contact == null) throw new IllegalArgumentException("Contact cannot be null");
+    public static boolean isContactNull( Contact contact) {
+        try {
+            if(contact == null) throw new IllegalArgumentException("Contact cannot be null");
+        } catch (IllegalArgumentException e) {
+            return true;
+        }
+        return false;
     }
 
 

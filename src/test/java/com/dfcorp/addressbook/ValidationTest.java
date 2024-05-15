@@ -156,9 +156,7 @@ public class ValidationTest {
             // Arrange
             // Act
             // Assert
-            assertThrows(IllegalArgumentException.class, () ->{
-                Validation.isContactNull(null);
-            });
+            assertTrue(Validation.isContactNull(null));
         }
     }
 

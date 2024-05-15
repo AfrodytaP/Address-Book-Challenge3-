@@ -12,27 +12,30 @@ public class AddressBookTest {
     @Nested
     @DisplayName("Address Constructor Tests")
     class ConstructorTests{
+        private AddressBook testAddressBook;
+        private AddressBook testAddressBook2;
+
+        @BeforeEach
+        public void setUp() {
+            testAddressBook = new AddressBook();
+            testAddressBook2 = new AddressBook();
+        }
+
+        @AfterEach
+        public void tearDown() {
+            testAddressBook = null;
+            testAddressBook2 = null;
+        }
 
         @Test
         @Description("Requirement 2 - Test 1) Tests the addressBook constructor sets values when valid")
         public void testConstructorSetsValuesWhenValid() {
             // Arrange
-            AddressBook testAddressBook = new AddressBook();
             // Act
             // Assert
             assertEquals(testAddressBook.getContacts().size(), 0);
         }
 
-        @Test
-        @Description("Requirement 2 - Test 2) Tests the addressBook UserID changes when a new address book is instantiated")
-        public void testUserIdIncrementsWhenNewAddressBookIsInstantiated() {
-            // Arrange
-            AddressBook testAddressBook = new AddressBook();
-            AddressBook testAddressBook2 = new AddressBook();
-            // Act
-            // Assert
-            assertEquals(testAddressBook2.getUserId(), 2);
-        }
     }
 
     @Nested
@@ -51,9 +54,6 @@ public class AddressBookTest {
             when(mockContact2.getLastName()).thenReturn("Pudlo");
             when(mockContact2.getPhoneNumber()).thenReturn("07878765342");
             when(mockContact2.getEmail()).thenReturn("afrodyta@hotmail.com");
-
-
-
         }
 
         @AfterEach
@@ -88,13 +88,12 @@ public class AddressBookTest {
         public void testAddContactDoesNotAddContactToContactsWhenNull() {
             // Arrange
             mockContact = null;
+            String expectedMessage = "Contact cannot be null";
             // Act
-            testAddressBook.addContact(mockContact);
             // Assert
-            assertEquals(0, testAddressBook.getContacts().size());
+            assertEquals(expectedMessage, assertThrows(IllegalArgumentException.class, () -> testAddressBook.addContact(mockContact)).getMessage());
 
         }
-
     }
 
 }

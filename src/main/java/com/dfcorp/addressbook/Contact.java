@@ -7,10 +7,10 @@ public class Contact {
     private String email;
 
     public Contact(String firstName, String lastName, String phoneNumber, String email) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.phoneNumber = phoneNumber;
-        this.email = email;
+        this.firstName = Validation.validateName(firstName);
+        this.lastName = Validation.validateName(lastName);
+        this.phoneNumber = Validation.validatePhoneNumber(phoneNumber);
+        this.email = Validation.validateEmail(email);
     }
 
     public String getFirstName() {

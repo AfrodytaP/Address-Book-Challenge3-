@@ -21,12 +21,8 @@ public class AddressBook {
     }
 
     public void addContact(Contact contact) {
-        try {
-            Validation.isContactNull(contact);
-            contacts.add(contact);
-        }catch (IllegalArgumentException e){
-            System.out.println("Contact was not added: " + e.getMessage() + " please try again.");
-        }
+        if((Validation.isContactNull(contact))){ throw new IllegalArgumentException("Contact cannot be null");}
 
+        contacts.add(contact);
     }
 }

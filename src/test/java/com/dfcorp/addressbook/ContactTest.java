@@ -4,9 +4,10 @@ import jdk.jfr.Description;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
+import org.mockito.MockedStatic;
+import org.mockito.Mockito;
 
-import static org.junit.jupiter.api.Assertions.assertAll;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class ContactTest {
 
@@ -33,6 +34,25 @@ public class ContactTest {
                     () -> assertEquals(testPhoneNumber, testContact.getPhoneNumber()),
                     () -> assertEquals(testEmail, testContact.getEmail()));
         }
+
+        @Test
+        @Description("Requirement 1 - Test 15) Tests the contact constructor sets values when valid")
+        public void testConstructorSetsValuesWhenValide() {
+            // Arrange
+            String invalidFirstName = "Afrodyta1";
+            String invalidLastName = "Pudlo2";
+            String invalidPhoneNumber = "07878765342ss";
+            String invalidEmail = "afrodytahotmail.com";
+
+
+            // Assert
+            assertThrows(IllegalArgumentException.class, () -> new Contact(invalidFirstName, invalidLastName, invalidPhoneNumber, invalidEmail));
+
+
+        }
+
+
+
 
     }
 
