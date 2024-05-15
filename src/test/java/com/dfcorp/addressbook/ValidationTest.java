@@ -149,5 +149,17 @@ public class ValidationTest {
             // Assert
             assertEquals(expectedMessage, Validation.validateEmail(testString));
         }
+
+        @Test
+        @Description("Requirement 2 - Test 3) Tests the addContact() throw IllegalArgumentException when contact is null")
+        public void testAddContactSetsContactToNull() {
+            // Arrange
+            // Act
+            // Assert
+            assertThrows(IllegalArgumentException.class, () ->{
+                Validation.isContactNull(null);
+            });
+        }
     }
+
 }

@@ -1,5 +1,7 @@
 package com.dfcorp.addressbook;
 
+import java.util.ArrayList;
+
 public abstract class Validation {
 
     public static boolean isStringNullOrEmpty(String string) {
@@ -24,9 +26,8 @@ public abstract class Validation {
         return email;
     }
 
-    public static Contact isContactValid(Contact contact) {
+    public static void isContactNull( Contact contact) {
         if(contact == null) throw new IllegalArgumentException("Contact cannot be null");
-        return contact;
     }
 
 
