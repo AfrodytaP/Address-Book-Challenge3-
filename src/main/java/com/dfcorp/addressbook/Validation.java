@@ -35,6 +35,17 @@ public abstract class Validation {
         return false;
     }
 
+    public static boolean isPhoneNumberDuplicate(ArrayList<Contact> contacts, Contact contact) {
+        try {
+            for(Contact phoneNumber : contacts){
+            if(phoneNumber.getPhoneNumber().equals(contact.getPhoneNumber())) throw new IllegalArgumentException("Phone number already exists, duplicate phone numbers are not allowed");
+            }
+        } catch (IllegalArgumentException e) {
+            return true;
+        }
+        return false;
+    }
+
 
 
 }

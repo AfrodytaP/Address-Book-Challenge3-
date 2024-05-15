@@ -2,11 +2,15 @@ package com.dfcorp.addressbook;
 
 import jdk.jfr.Description;
 import org.junit.jupiter.api.*;
+import org.mockito.MockedStatic;
+import org.mockito.Mockito;
+
+import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
+import static org.mockito.ArgumentMatchers.anyList;
 
 public class AddressBookTest {
     @Nested
@@ -41,12 +45,14 @@ public class AddressBookTest {
     @Nested
     @DisplayName("AddContact Tests")
     class AddContactTests{
+        private Validation mockValidation;
         private AddressBook testAddressBook;
         private Contact mockContact;
         private Contact mockContact2;
 
         @BeforeEach
         public void setUp() {
+            mockValidation = mock(Validation.class);
             testAddressBook = new AddressBook();
             mockContact = mock(Contact.class);
             mockContact2 = mock(Contact.class);
@@ -92,8 +98,21 @@ public class AddressBookTest {
             // Act
             // Assert
             assertEquals(expectedMessage, assertThrows(IllegalArgumentException.class, () -> testAddressBook.addContact(mockContact)).getMessage());
-
         }
+
+        @Test
+        @Description("Requirement 3 - Test 1) Tests the addContact() dose not add given duplicate contact.getPhoneNumber object to the Contacts array")
+        public void testAddContactThrowErrorWhenGivenDuplicatePhoneNumberObject() {
+            // Arrange
+            String expectedMessage = "Phone number already exists, duplicate phone numbers are not allowed";
+            // Act
+            testAddressBook.addContact(mockContact);
+            when(mockContact.getPhoneNumber()).thenReturn("07878765342");
+            when(mockContact2.getPhoneNumber()).thenReturn("07878765342");
+            // Assert
+            assertEquals(expectedMessage, assertThrows(IllegalArgumentException.class, () -> testAddressBook.addContact(mockContact2)).getMessage());
+        }
+
     }
 
 }
