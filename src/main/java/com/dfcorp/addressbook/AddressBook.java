@@ -23,7 +23,7 @@ public class AddressBook {
     public void addContact(Contact contact) {
         if((Validation.isContactNull(contact))){ throw new IllegalArgumentException("Contact cannot be null");}
         if((Validation.isPhoneNumberDuplicate(contacts, contact))){ throw new IllegalArgumentException("Phone number already exists, duplicate phone numbers are not allowed");}
-
+        if((Validation.isEmailDuplicate(contacts, contact))){ throw new IllegalArgumentException("Email already exists, duplicate emails are not allowed");}
         contacts.add(contact);
     }
 }

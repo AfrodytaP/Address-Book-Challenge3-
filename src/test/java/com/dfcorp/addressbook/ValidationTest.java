@@ -158,6 +158,7 @@ public class ValidationTest {
             // Assert
             assertTrue(Validation.isContactNull(null));
         }
+
     }
 
 }

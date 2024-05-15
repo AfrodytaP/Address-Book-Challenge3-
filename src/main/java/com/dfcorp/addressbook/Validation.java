@@ -46,6 +46,17 @@ public abstract class Validation {
         return false;
     }
 
+    public static boolean isEmailDuplicate(ArrayList<Contact> contacts, Contact contact) {
+        try {
+            for(Contact email : contacts){
+                if(email.getEmail().equals(contact.getEmail())) throw new IllegalArgumentException("Email already exists, duplicate emails are not allowed");
+            }
+        } catch (IllegalArgumentException e) {
+            return true;
+        }
+        return false;
+    }
+
 
 
 }

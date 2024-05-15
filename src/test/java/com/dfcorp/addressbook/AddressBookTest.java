@@ -113,6 +113,24 @@ public class AddressBookTest {
             assertEquals(expectedMessage, assertThrows(IllegalArgumentException.class, () -> testAddressBook.addContact(mockContact2)).getMessage());
         }
 
+        @Test
+        @Description("Requirement 4 - Test 1) Tests the addContact() does not add given duplicate contact.getEmail object to the Contacts array")
+        public void testAddContactThrowErrorWhenGivenDuplicateEmailObject() {
+            // Arrange
+            String expectedMessage = "Email already exists, duplicate emails are not allowed";
+            // Act
+            String email = "afrodyta@hotmail.com";
+            when(mockContact.getEmail()).thenReturn(email);
+            when(mockContact2.getEmail()).thenReturn(email);
+            when(mockContact.getPhoneNumber()).thenReturn("07474788831");
+            when(mockContact2.getPhoneNumber()).thenReturn("07356622252");
+            when(mockContact2.getPhoneNumber()).thenReturn(email);
+            testAddressBook.addContact(mockContact);
+
+            // Assert
+            assertEquals(expectedMessage, assertThrows(IllegalArgumentException.class, () -> testAddressBook.addContact(mockContact2)).getMessage());
+        }
+
     }
 
 }
