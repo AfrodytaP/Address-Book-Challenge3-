@@ -424,5 +424,18 @@ public class AddressBookTest {
 
         }
 
+        @Test
+        @Description("Requirement 7 - Test 5) Tests the deletesContacts() throws an exception when contact is not in the address book")
+        public void testDeleteContactsThrowsExceptionWhenContactIsNotInTheAddressBook() {
+            // Arrange
+            when(mockContact5.getFirstName()).thenReturn("Alex");
+            when(mockContact5.getLastName()).thenReturn("Hill");
+            when(mockContact5.getPhoneNumber()).thenReturn("07878765443");
+            when(mockContact5.getEmail()).thenReturn("alex@outlook.com");
+            // Act
+            // Assert
+            assertEquals("Contact does not exist in the address book please try again", assertThrows(IllegalArgumentException.class, () -> testAddressBook.deleteContact(mockContact5)).getMessage());
+
+        }
     }
 }
