@@ -187,5 +187,15 @@ public class AddressBookTest {
             // Assert
             assertEquals(2, matches.size());
         }
+
+        @Test
+        @Description("Requirement 5 - Test 2) Tests the searchContactsByName() returns O list size of matched contacts with first and last names")
+        public void testSearchContactsByNameReturnsListOfSizeZeroWhenNoMatches() {
+            // Arrange
+            List<Contact> matches = testAddressBook.searchContactsByName("frodyta", "P");
+            // Act
+            // Assert
+            assertEquals(0, matches.size());
+        }
     }
 }
