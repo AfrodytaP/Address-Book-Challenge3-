@@ -29,6 +29,9 @@ public class AddressBook {
     }
 
     public List<Contact> searchContactsByName(String firstName, String lastName) {
+        if(Validation.isStringNullOrEmpty(firstName) || Validation.isStringNullOrEmpty(lastName)) {
+            throw new IllegalArgumentException("First name and last name cannot be null or empty");
+        }
         List<Contact> matchesFound;
         matchesFound = new ArrayList<>();
         for (Contact contact : contacts) {

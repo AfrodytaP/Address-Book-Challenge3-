@@ -207,5 +207,16 @@ public class AddressBookTest {
             // Assert
             assertEquals(2, matches.size());
         }
+
+        @Test
+        @Description("Requirement 5 - Test 4) Tests the searchContactsByName() throws an exception when first name is null")
+        public void testSearchContactsByNameThrowsExceptionWhenFirstNameIsNull() {
+            // Arrange
+            String expectedMessage = "First name and last name cannot be null or empty";
+            //Act
+            // Assert
+            assertEquals(expectedMessage, assertThrows(IllegalArgumentException.class, () -> testAddressBook.searchContactsByName(null, "Pudlo")).getMessage());
+
+        }
     }
 }
