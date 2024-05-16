@@ -32,7 +32,7 @@ public class AddressBook {
         List<Contact> matchesFound;
         matchesFound = new ArrayList<>();
         for (Contact contact : contacts) {
-            if (contact.getFirstName().equals(firstName) && contact.getLastName().equals(lastName)) {
+            if (contact.getFirstName().contains(firstName) && contact.getLastName().contains(lastName)) {
                 matchesFound.add(contact);
             }
         }
