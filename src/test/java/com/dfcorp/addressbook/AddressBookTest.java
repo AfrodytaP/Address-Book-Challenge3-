@@ -4,6 +4,7 @@ import jdk.jfr.Description;
 import org.junit.jupiter.api.*;
 import org.junit.platform.commons.util.BlacklistedExceptions;
 
+import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -230,6 +231,78 @@ public class AddressBookTest {
             //Act
             // Assert
             assertEquals(expectedMessage, assertThrows(IllegalArgumentException.class, () -> testAddressBook.searchContactsByName("Afrodyta", "")).getMessage());
+        }
+    }
+
+    @Nested
+    class DisplayContacts {
+        private AddressBook testAddressBook;
+        private Contact mockContact;
+        private Contact mockContact2;
+        private Contact mockContact3;
+        private Contact mockContact4;
+        private PrintStream mockPrintStream;
+
+        @BeforeEach
+        public void setUp() {
+            testAddressBook = new AddressBook();
+            mockContact = mock(Contact.class);
+            mockContact2 = mock(Contact.class);
+            mockContact3 = mock(Contact.class);
+            mockContact4 = mock(Contact.class);
+            mockPrintStream = mock(PrintStream.class);
+            System.setOut(mockPrintStream);
+
+            when(mockContact.getFirstName()).thenReturn("Afrodyta");
+            when(mockContact.getLastName()).thenReturn("Pudlo");
+            when(mockContact.getPhoneNumber()).thenReturn("07878765342");
+            when(mockContact.getEmail()).thenReturn("afrodyta@hotmail.com");
+
+            when(mockContact2.getFirstName()).thenReturn("Afrodyta");
+            when(mockContact2.getLastName()).thenReturn("Smith");
+            when(mockContact2.getPhoneNumber()).thenReturn("07878765343");
+            when(mockContact2.getEmail()).thenReturn("afrodytaSmith@hotmail.com");
+
+            when(mockContact3.getFirstName()).thenReturn("Tom");
+            when(mockContact3.getLastName()).thenReturn("Smith");
+            when(mockContact3.getPhoneNumber()).thenReturn("07878765344");
+            when(mockContact3.getEmail()).thenReturn("tom@hotmail.com");
+
+            when(mockContact4.getFirstName()).thenReturn("Afrodyta");
+            when(mockContact4.getLastName()).thenReturn("Pudlo");
+            when(mockContact4.getPhoneNumber()).thenReturn("07878765345");
+            when(mockContact4.getEmail()).thenReturn("afrodytaP@hotmail.com");
+            testAddressBook.addContact(mockContact);
+            testAddressBook.addContact(mockContact2);
+            testAddressBook.addContact(mockContact3);
+            testAddressBook.addContact(mockContact4);
+
+        }
+
+        @AfterEach
+        public void tearDown() {
+            testAddressBook = null;
+            mockContact = null;
+            mockContact2 = null;
+            mockContact3 = null;
+            mockContact4 = null;
+            mockPrintStream = null;
+            System.setOut(System.out);
+        }
+
+        @Test
+        @Description("Requirement 6 - Test 5) Tests the displayContacts() prints out given contacts in the address book")
+        public void testDisplayContactsPrintsOutGivenContactsInTheAddressBook() {
+            // Arrange
+            ArrayList<Contact> contacts = testAddressBook.getContacts();
+            // Act
+            testAddressBook.displayContacts(contacts);
+            // Assert
+            verify(mockPrintStream, times(1)).println("Full Name: Afrodyta Pudlo Phone Number: 07878765342 Email: afrodyta@hotmail.com");
+            verify(mockPrintStream, times(1)).println("Full Name: Afrodyta Smith Phone Number: 07878765343 Email: afrodytaSmith@hotmail.com");
+            verify(mockPrintStream, times(1)).println("Full Name: Tom Smith Phone Number: 07878765344 Email: tom@hotmail.com");
+            verify(mockPrintStream, times(1)).println("Full Name: Afrodyta Pudlo Phone Number: 07878765345 Email: afrodytaP@hotmail.com");
+
         }
     }
 }

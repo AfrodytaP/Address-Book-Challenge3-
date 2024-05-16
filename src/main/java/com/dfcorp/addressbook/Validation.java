@@ -37,14 +37,13 @@ public abstract class Validation {
 
     public static boolean isContactsNull( ArrayList<Contact> contacts) {
         for (Contact contact : contacts) {
-            try {
-                if (contact == null) throw new IllegalArgumentException("Contact cannot be null");
-            } catch (IllegalArgumentException e) {
+            if (contact == null) {
                 return true;
             }
         }
         return false;
     }
+
     public static boolean isContactsEmpty( ArrayList<Contact> contacts) {
         for (Contact contact : contacts) {
             if (!(contact.getFirstName() == null && contact.getLastName() == null && contact.getPhoneNumber() == null && contact.getEmail() == null))

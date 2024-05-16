@@ -28,11 +28,11 @@ public class AddressBook {
         contacts.add(contact);
     }
 
-    public List<Contact> searchContactsByName(String firstName, String lastName) {
+    public ArrayList<Contact> searchContactsByName(String firstName, String lastName) {
         if(Validation.isStringNullOrEmpty(firstName) || Validation.isStringNullOrEmpty(lastName)) {
             throw new IllegalArgumentException("First name and last name cannot be null or empty");
         }
-        List<Contact> matchesFound;
+        ArrayList<Contact> matchesFound;
         matchesFound = new ArrayList<>();
         for (Contact contact : contacts) {
             if (contact.getFirstName().contains(firstName) && contact.getLastName().contains(lastName)) {
@@ -44,8 +44,9 @@ public class AddressBook {
 
     public void displayContacts(ArrayList<Contact> contacts) {
         if(Validation.isContactsNull(contacts)) {throw new IllegalArgumentException("Contacts cannot be null");}
+        if(Validation.isContactsEmpty(contacts)) {throw new IllegalArgumentException("Contacts cannot be empty");}
         for (Contact contact : contacts) {
-            System.out.println("Full Name: " + contact.getFirstName() + " " + contact.getLastName() + "Phone Number: " + contact.getPhoneNumber() + "Email: " + contact.getEmail());
+            System.out.println("Full Name: " + contact.getFirstName() + " " + contact.getLastName() + " Phone Number: " + contact.getPhoneNumber() + " Email: " + contact.getEmail());
         }
     }
 
