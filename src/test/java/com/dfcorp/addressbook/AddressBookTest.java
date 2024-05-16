@@ -327,5 +327,18 @@ public class AddressBookTest {
             // Assert
             assertEquals(expectedMessage, assertThrows(IllegalArgumentException.class, () -> testAddressBook.displayContacts(testAddressBook2.getContacts())).getMessage());
         }
+
+        @Test
+        @Description("Requirement 6 - Test 8) Tests the displayContacts() prints out contacts from searchContactsByName()")
+        public void testDisplayContactsPrintsOutContactsFromSearchContactsByName() {
+            // Arrange
+            ArrayList<Contact> contacts = testAddressBook.searchContactsByName("Afrodyta", "Pudlo");
+            // Act
+            testAddressBook.displayContacts(contacts);
+            // Assert
+            verify(mockPrintStream, times(1)).println("Full Name: Afrodyta Pudlo Phone Number: 07878765342 Email: afrodyta@hotmail.com");
+            verify(mockPrintStream, times(1)).println("Full Name: Afrodyta Pudlo Phone Number: 07878765345 Email: afrodytaP@hotmail.com");
+
+        }
     }
 }
