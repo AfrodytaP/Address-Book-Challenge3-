@@ -304,5 +304,15 @@ public class AddressBookTest {
             verify(mockPrintStream, times(1)).println("Full Name: Afrodyta Pudlo Phone Number: 07878765345 Email: afrodytaP@hotmail.com");
 
         }
+
+        @Test
+        @Description("Requirement 6 - Test 6) Tests the displayContacts() throws an exception when contacts are null")
+        public void testDisplayContactsThrowsExceptionWhenContactsAreNull() {
+            // Arrange
+            String expectedMessage = "Contacts cannot be null";
+            // Act
+            // Assert
+            assertEquals(expectedMessage, assertThrows(IllegalArgumentException.class, () -> testAddressBook.displayContacts(null)).getMessage());
+        }
     }
 }

@@ -36,8 +36,13 @@ public abstract class Validation {
     }
 
     public static boolean isContactsNull( ArrayList<Contact> contacts) {
+        if(contacts == null) return true;
         for (Contact contact : contacts) {
-            if (contact == null) {
+            try {
+                if (contact == null) {
+                    return true;
+                }
+            }catch (NullPointerException e) {
                 return true;
             }
         }
