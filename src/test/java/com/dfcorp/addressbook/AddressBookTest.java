@@ -4,6 +4,7 @@ import jdk.jfr.Description;
 import org.junit.jupiter.api.*;
 import org.junit.platform.commons.util.BlacklistedExceptions;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

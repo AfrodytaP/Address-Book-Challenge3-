@@ -167,12 +167,14 @@ public class ValidationTest {
     class IsContantsNull {
 
         private AddressBook mockAddressBook;
+        private AddressBook mockAddressBook2;
         private Contact mockContact;
         private Contact mockContact2;
 
         @BeforeEach
         public void setUp() {
             mockAddressBook = mock(AddressBook.class);
+            mockAddressBook2 = mock(AddressBook.class);
             mockContact = mock(Contact.class);
             mockContact2 = mock(Contact.class);
 
@@ -194,6 +196,7 @@ public class ValidationTest {
         @AfterEach
         public void tearDown() {
             mockAddressBook = null;
+            mockAddressBook2 = null;
             mockContact = null;
             mockContact2 = null;
         }
@@ -217,6 +220,15 @@ public class ValidationTest {
             assertFalse(Validation.isContactsNull(contacts));
         }
 
+        @Test
+        @Description("Requirement 6 - Test 3) Tests the isContactsEmpty() return true when contacts are empty")
+        public void testIsContactsEmptyReturnsWhenContactsAreEmpty() {
+            // Arrange
+            ArrayList<Contact> contacts = ( mockAddressBook2.getContacts());
+            // Act
+            // Assert
+            assertTrue(Validation.isContactsEmpty(contacts));
+        }
     }
 
 }

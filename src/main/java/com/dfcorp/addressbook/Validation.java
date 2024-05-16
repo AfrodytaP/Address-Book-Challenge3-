@@ -45,6 +45,13 @@ public abstract class Validation {
         }
         return false;
     }
+    public static boolean isContactsEmpty( ArrayList<Contact> contacts) {
+        for (Contact contact : contacts) {
+            if (!(contact.getFirstName() == null && contact.getLastName() == null && contact.getPhoneNumber() == null && contact.getEmail() == null))
+                return false;
+        }
+         return true;
+    }
 
     public static boolean isPhoneNumberDuplicate(ArrayList<Contact> contacts, Contact contact) {
         try {

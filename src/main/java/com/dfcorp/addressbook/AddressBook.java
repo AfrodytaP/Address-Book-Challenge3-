@@ -42,4 +42,11 @@ public class AddressBook {
         return matchesFound;
     }
 
+    public void displayContacts(ArrayList<Contact> contacts) {
+        if(Validation.isContactsNull(contacts)) {throw new IllegalArgumentException("Contacts cannot be null");}
+        for (Contact contact : contacts) {
+            System.out.println("Full Name: " + contact.getFirstName() + " " + contact.getLastName() + "Phone Number: " + contact.getPhoneNumber() + "Email: " + contact.getEmail());
+        }
+    }
+
 }
