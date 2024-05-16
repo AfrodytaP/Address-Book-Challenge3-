@@ -52,6 +52,7 @@ public class AddressBook {
 
     public void deleteContact(Contact contact) {
         if(Validation.isContactNull(contact)) {throw new IllegalArgumentException("Contact cannot be null");}
+        if(Validation.isContactEmpty(contact)) {throw new IllegalArgumentException("Contact cannot be empty");}
 
     }
 

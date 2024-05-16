@@ -413,16 +413,16 @@ public class AddressBookTest {
 
         }
 
-//        @Test
-//        @Description("Requirement 7 - Test 3) Tests the deletesContacts() throws an exception when contact are empty")
-//        public void testDeleteContactsThrowsExceptionWhenContactAreEmpty() {
-//            // Arrange
-//            String expectedMessage = "Contact cannot be empty";
-//            // Act
-//            // Assert
-//            assertEquals(expectedMessage, assertThrows(IllegalArgumentException.class, () -> testAddressBook.deleteContact(mockContact5)).getMessage());
-//
-//        }
+        @Test
+        @Description("Requirement 7 - Test 4) Tests the deletesContacts() throws an exception when contact are empty")
+        public void testDeleteContactsThrowsExceptionWhenContactAreEmpty() {
+            // Arrange
+            String expectedMessage = "Contact cannot be empty";
+            // Act
+            // Assert
+            assertEquals(expectedMessage, assertThrows(IllegalArgumentException.class, () -> testAddressBook.deleteContact(mockContact5)).getMessage());
+
+        }
 
     }
 }
