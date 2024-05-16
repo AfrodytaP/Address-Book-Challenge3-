@@ -3,6 +3,8 @@ package com.dfcorp.addressbook;
 import jdk.jfr.Description;
 import org.junit.jupiter.api.*;
 
+import java.util.ArrayList;
+
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -159,17 +161,60 @@ public class ValidationTest {
             assertTrue(Validation.isContactNull(null));
         }
     }
+
     @Nested
     @DisplayName("isContantsNull Tests")
     class IsContantsNull {
 
+        private AddressBook mockAddressBook;
+        private Contact mockContact;
+        private Contact mockContact2;
+
+        @BeforeEach
+        public void setUp() {
+            mockAddressBook = mock(AddressBook.class);
+            mockContact = mock(Contact.class);
+            mockContact2 = mock(Contact.class);
+
+            when(mockContact.getFirstName()).thenReturn("Afrodyta");
+            when(mockContact.getLastName()).thenReturn("Pudlo");
+            when(mockContact.getPhoneNumber()).thenReturn("07878765342");
+            when(mockContact.getEmail()).thenReturn("afrodyta@hotmail.com");
+
+            when(mockContact2.getFirstName()).thenReturn("Afrodyta");
+            when(mockContact2.getLastName()).thenReturn("Smith");
+            when(mockContact2.getPhoneNumber()).thenReturn("07878765343");
+            when(mockContact2.getEmail()).thenReturn("afrodytaSmith@hotmail.com");
+
+            mockAddressBook.addContact(mockContact);
+            mockAddressBook.addContact(mockContact2);
+
+        }
+
+        @AfterEach
+        public void tearDown() {
+            mockAddressBook = null;
+            mockContact = null;
+            mockContact2 = null;
+        }
+
         @Test
-        @Description("Requirement 6 - Test 1) Tests the isContactsNull() return throws IllegalArgumentException when contacts is null")
-        public void testIsContactsNullReturnsIllegalArgumentExceptionWhenContactsIsNull() {
+        @Description("Requirement 6 - Test 1) Tests the isContactsNull() return true and throws IllegalArgumentException when contacts is null")
+        public void testIsContactsNullReturnsTrueAndIllegalArgumentExceptionWhenContactsIsNull() {
             // Arrange
             // Act
             // Assert
             assertTrue(Validation.isContactNull(null));
+        }
+
+        @Test
+        @Description("Requirement 6 - Test 2) Tests the isContactsNull() return false when contacts are Valid")
+        public void testIsContactsNullReturnsFalseWhenContactsAreValid() {
+            // Arrange
+            ArrayList<Contact> contacts = ( mockAddressBook.getContacts());
+            // Act
+            // Assert
+            assertFalse(Validation.isContactsNull(contacts));
         }
 
     }
