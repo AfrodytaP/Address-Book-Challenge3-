@@ -456,13 +456,23 @@ public class AddressBookTest {
         }
 
         @Test
-        @Description("Requirement 8 - Test 1) Tests the editContact() throws an exception when contact are null")
-        public void testEditContactThrowsExceptionWhenContactAreNull() {
+        @Description("Requirement 8 - Test 1) Tests the editContact() throws an exception when contact is null")
+        public void testEditContactThrowsExceptionWhenContactIsNull() {
             // Arrange
             String expectedMessage = "Contact cannot be null";
             // Act
             // Assert
             assertEquals(expectedMessage, assertThrows(IllegalArgumentException.class, () -> testAddressBook.editContact(null)).getMessage());
+        }
+
+        @Test
+        @Description("Requirement 8 - Test 2) Tests the editContact() throws an exception when contact is empty")
+        public void testEditContactThrowsExceptionWhenContactIsEmpty() {
+            // Arrange
+            String expectedMessage = "Contact cannot be empty";
+            // Act
+            // Assert
+            assertEquals(expectedMessage, assertThrows(IllegalArgumentException.class, () -> testAddressBook.editContact(mockContact5)).getMessage());
         }
 
     }
