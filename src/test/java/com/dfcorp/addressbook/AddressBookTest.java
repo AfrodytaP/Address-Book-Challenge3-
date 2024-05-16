@@ -345,23 +345,20 @@ public class AddressBookTest {
     @Nested
     class DeleteContact {
         private AddressBook testAddressBook;
-        private AddressBook testAddressBook2;
         private Contact mockContact;
         private Contact mockContact2;
         private Contact mockContact3;
         private Contact mockContact4;
-        private PrintStream mockPrintStream;
+        private Contact mockContact5;
 
         @BeforeEach
         public void setUp() {
             testAddressBook = new AddressBook();
-            testAddressBook2 = new AddressBook();
             mockContact = mock(Contact.class);
             mockContact2 = mock(Contact.class);
             mockContact3 = mock(Contact.class);
             mockContact4 = mock(Contact.class);
-            mockPrintStream = mock(PrintStream.class);
-            System.setOut(mockPrintStream);
+            mockContact5 = mock(Contact.class);
 
             when(mockContact.getFirstName()).thenReturn("Afrodyta");
             when(mockContact.getLastName()).thenReturn("Pudlo");
@@ -382,6 +379,12 @@ public class AddressBookTest {
             when(mockContact4.getLastName()).thenReturn("Pudlo");
             when(mockContact4.getPhoneNumber()).thenReturn("07878765345");
             when(mockContact4.getEmail()).thenReturn("afrodytaP@hotmail.com");
+
+            when(mockContact5.getFirstName()).thenReturn(null);
+            when(mockContact5.getLastName()).thenReturn(null);
+            when(mockContact5.getPhoneNumber()).thenReturn(null);
+            when(mockContact5.getEmail()).thenReturn(null);
+
             testAddressBook.addContact(mockContact);
             testAddressBook.addContact(mockContact2);
             testAddressBook.addContact(mockContact3);
@@ -392,13 +395,11 @@ public class AddressBookTest {
         @AfterEach
         public void tearDown() {
             testAddressBook = null;
-            testAddressBook2 = null;
             mockContact = null;
             mockContact2 = null;
             mockContact3 = null;
             mockContact4 = null;
-            mockPrintStream = null;
-            System.setOut(System.out);
+            mockContact5 = null;
         }
 
         @Test
@@ -411,6 +412,17 @@ public class AddressBookTest {
             assertEquals(expectedMessage, assertThrows(IllegalArgumentException.class, () -> testAddressBook.deleteContact(null)).getMessage());
 
         }
+
+//        @Test
+//        @Description("Requirement 7 - Test 3) Tests the deletesContacts() throws an exception when contact are empty")
+//        public void testDeleteContactsThrowsExceptionWhenContactAreEmpty() {
+//            // Arrange
+//            String expectedMessage = "Contact cannot be empty";
+//            // Act
+//            // Assert
+//            assertEquals(expectedMessage, assertThrows(IllegalArgumentException.class, () -> testAddressBook.deleteContact(mockContact5)).getMessage());
+//
+//        }
 
     }
 }

@@ -35,6 +35,10 @@ public abstract class Validation {
         return false;
     }
 
+    public static boolean isContactEmpty(Contact contacts) {
+        return contacts.getFirstName() == null && contacts.getLastName() == null && contacts.getPhoneNumber() == null && contacts.getEmail() == null;
+    }
+
     public static boolean isContactsNull( ArrayList<Contact> contacts) {
         if(contacts == null) return true;
         for (Contact contact : contacts) {

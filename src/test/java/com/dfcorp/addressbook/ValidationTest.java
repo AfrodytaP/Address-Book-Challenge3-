@@ -163,8 +163,8 @@ public class ValidationTest {
     }
 
     @Nested
-    @DisplayName("isContantsNull Tests")
-    class IsContantsNull {
+    @DisplayName("isContactsNull and isContactsEmptyTests")
+    class IsContactsNullIsContactsEmptyTests {
 
         private AddressBook mockAddressBook;
         private AddressBook mockAddressBook2;
@@ -238,6 +238,45 @@ public class ValidationTest {
             // Act
             // Assert
             assertTrue(Validation.isContactsEmpty(contacts));
+        }
+    }
+
+    @Nested
+    @DisplayName("sContactEmptyTests")
+    class IsContactEmptyTests {
+
+        private Contact mockContact;
+        private Contact mockContact2;
+
+        @BeforeEach
+        public void setUp() {
+            mockContact = mock(Contact.class);
+            mockContact2 = mock(Contact.class);
+
+            when(mockContact.getFirstName()).thenReturn("Afrodyta");
+            when(mockContact.getLastName()).thenReturn("Pudlo");
+            when(mockContact.getPhoneNumber()).thenReturn("07878765342");
+            when(mockContact.getEmail()).thenReturn("afrodyta@hotmail.com");
+
+            when(mockContact2.getFirstName()).thenReturn(null);
+            when(mockContact2.getLastName()).thenReturn(null);
+            when(mockContact2.getPhoneNumber()).thenReturn(null);
+            when(mockContact2.getEmail()).thenReturn(null);
+        }
+
+        @AfterEach
+        public void tearDown() {
+            mockContact = null;
+            mockContact2 = null;
+        }
+
+        @Test
+        @Description("Requirement 7 - Test 2) Tests the isContactEmpty() return true when contact is empty")
+        public void testIsContactEmptyReturnsTrueWhenContactIsEmpty() {
+            // Arrange
+            // Act
+            // Assert
+            assertTrue(Validation.isContactEmpty(mockContact2));
         }
     }
 
