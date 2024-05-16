@@ -237,6 +237,7 @@ public class AddressBookTest {
     @Nested
     class DisplayContacts {
         private AddressBook testAddressBook;
+        private AddressBook testAddressBook2;
         private Contact mockContact;
         private Contact mockContact2;
         private Contact mockContact3;
@@ -246,6 +247,7 @@ public class AddressBookTest {
         @BeforeEach
         public void setUp() {
             testAddressBook = new AddressBook();
+            testAddressBook2 = new AddressBook();
             mockContact = mock(Contact.class);
             mockContact2 = mock(Contact.class);
             mockContact3 = mock(Contact.class);
@@ -282,6 +284,7 @@ public class AddressBookTest {
         @AfterEach
         public void tearDown() {
             testAddressBook = null;
+            testAddressBook2 = null;
             mockContact = null;
             mockContact2 = null;
             mockContact3 = null;
@@ -313,6 +316,16 @@ public class AddressBookTest {
             // Act
             // Assert
             assertEquals(expectedMessage, assertThrows(IllegalArgumentException.class, () -> testAddressBook.displayContacts(null)).getMessage());
+        }
+
+        @Test
+        @Description("Requirement 6 - Test 7) Tests the displayContacts() throws an exception when contacts are empty")
+        public void testDisplayContactsThrowsExceptionWhenContactsAreEmpty() {
+            // Arrange
+            String expectedMessage = "Contacts cannot be empty";
+            // Act
+            // Assert
+            assertEquals(expectedMessage, assertThrows(IllegalArgumentException.class, () -> testAddressBook.displayContacts(testAddressBook2.getContacts())).getMessage());
         }
     }
 }
