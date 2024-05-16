@@ -222,9 +222,19 @@ public class ValidationTest {
 
         @Test
         @Description("Requirement 6 - Test 3) Tests the isContactsEmpty() return true when contacts are empty")
-        public void testIsContactsEmptyReturnsWhenContactsAreEmpty() {
+        public void testIsContactsEmptyReturnsTrueWhenContactsAreEmpty() {
             // Arrange
             ArrayList<Contact> contacts = ( mockAddressBook2.getContacts());
+            // Act
+            // Assert
+            assertTrue(Validation.isContactsEmpty(contacts));
+        }
+
+        @Test
+        @Description("Requirement 6 - Test 4) Tests the isContactsEmpty() return false when contacts are not empty")
+            public void testIsContactsEmptyReturnsFalseWhenContactsAreNotEmpty() {
+            // Arrange
+            ArrayList<Contact> contacts = ( mockAddressBook.getContacts());
             // Act
             // Assert
             assertTrue(Validation.isContactsEmpty(contacts));
