@@ -278,6 +278,15 @@ public class ValidationTest {
             // Assert
             assertTrue(Validation.isContactEmpty(mockContact2));
         }
+
+        @Test
+            @Description("Requirement 7 - Test 3) Tests the isContactEmpty() return false when contact is not empty")
+        public void testIsContactEmptyReturnsFalseWhenContactIsNotEmpty() {
+            // Arrange
+            // Act
+            // Assert
+            assertFalse(Validation.isContactEmpty(mockContact));
+        }
     }
 
 }
