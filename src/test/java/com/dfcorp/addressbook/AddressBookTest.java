@@ -176,6 +176,9 @@ public class AddressBookTest {
         public void tearDown() {
             testAddressBook = null;
             mockContact = null;
+            mockContact2 = null;
+            mockContact3 = null;
+            mockContact4 = null;
         }
 
         @Test
@@ -216,7 +219,6 @@ public class AddressBookTest {
             //Act
             // Assert
             assertEquals(expectedMessage, assertThrows(IllegalArgumentException.class, () -> testAddressBook.searchContactsByName(null, "Pudlo")).getMessage());
-
         }
 
         @Test
@@ -227,7 +229,6 @@ public class AddressBookTest {
             //Act
             // Assert
             assertEquals(expectedMessage, assertThrows(IllegalArgumentException.class, () -> testAddressBook.searchContactsByName("Afrodyta", "")).getMessage());
-
         }
     }
 }

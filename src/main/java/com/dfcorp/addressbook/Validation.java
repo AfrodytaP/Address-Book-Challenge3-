@@ -35,6 +35,17 @@ public abstract class Validation {
         return false;
     }
 
+    public static boolean isContactsNull( ArrayList<Contact> contacts) {
+        for (Contact contact : contacts) {
+            try {
+                if (contact == null) throw new IllegalArgumentException("Contact cannot be null");
+            } catch (IllegalArgumentException e) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public static boolean isPhoneNumberDuplicate(ArrayList<Contact> contacts, Contact contact) {
         try {
             for(Contact phoneNumber : contacts){

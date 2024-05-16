@@ -1,11 +1,11 @@
 package com.dfcorp.addressbook;
 
 import jdk.jfr.Description;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Nested;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 public class ValidationTest {
     @Nested
@@ -114,7 +114,7 @@ public class ValidationTest {
             String expectedMessage = "07233222223";
             // Act
             // Assert
-            assertEquals(expectedMessage,Validation.validatePhoneNumber(testString));
+            assertEquals(expectedMessage, Validation.validatePhoneNumber(testString));
         }
 
         @Test
@@ -153,6 +153,19 @@ public class ValidationTest {
         @Test
         @Description("Requirement 2 - Test 3) Tests the addContact() throw IllegalArgumentException when contact is null")
         public void testAddContactSetsContactToNull() {
+            // Arrange
+            // Act
+            // Assert
+            assertTrue(Validation.isContactNull(null));
+        }
+    }
+    @Nested
+    @DisplayName("isContantsNull Tests")
+    class IsContantsNull {
+
+        @Test
+        @Description("Requirement 6 - Test 1) Tests the isContactsNull() return throws IllegalArgumentException when contacts is null")
+        public void testIsContactsNullReturnsIllegalArgumentExceptionWhenContactsIsNull() {
             // Arrange
             // Act
             // Assert
