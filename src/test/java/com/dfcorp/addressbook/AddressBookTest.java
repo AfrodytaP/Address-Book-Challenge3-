@@ -2,15 +2,13 @@ package com.dfcorp.addressbook;
 
 import jdk.jfr.Description;
 import org.junit.jupiter.api.*;
-import org.mockito.MockedStatic;
-import org.mockito.Mockito;
+import org.junit.platform.commons.util.BlacklistedExceptions;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.*;
-import static org.mockito.ArgumentMatchers.anyList;
 
 public class AddressBookTest {
     @Nested
@@ -45,14 +43,12 @@ public class AddressBookTest {
     @Nested
     @DisplayName("AddContact Tests")
     class AddContactTests{
-        private Validation mockValidation;
         private AddressBook testAddressBook;
         private Contact mockContact;
         private Contact mockContact2;
 
         @BeforeEach
         public void setUp() {
-            mockValidation = mock(Validation.class);
             testAddressBook = new AddressBook();
             mockContact = mock(Contact.class);
             mockContact2 = mock(Contact.class);
@@ -133,4 +129,63 @@ public class AddressBookTest {
 
     }
 
+    @Nested
+    @DisplayName("searchContactsByName Tests")
+    class SearchContactsByName {
+        private AddressBook testAddressBook;
+        private Contact mockContact;
+        private Contact mockContact2;
+        private Contact mockContact3;
+        private Contact mockContact4;
+
+        @BeforeEach
+        public void setUp() {
+            testAddressBook = new AddressBook();
+            mockContact = mock(Contact.class);
+            mockContact2 = mock(Contact.class);
+            mockContact3 = mock(Contact.class);
+            mockContact4 = mock(Contact.class);
+
+            when(mockContact.getFirstName()).thenReturn("Afrodyta");
+            when(mockContact.getLastName()).thenReturn("Pudlo");
+            when(mockContact.getPhoneNumber()).thenReturn("07878765342");
+            when(mockContact.getEmail()).thenReturn("afrodyta@hotmail.com");
+
+            when(mockContact2.getFirstName()).thenReturn("Afrodyta");
+            when(mockContact2.getLastName()).thenReturn("Smith");
+            when(mockContact2.getPhoneNumber()).thenReturn("07878765343");
+            when(mockContact2.getEmail()).thenReturn("afrodytaSmith@hotmail.com");
+
+            when(mockContact3.getFirstName()).thenReturn("Tom");
+            when(mockContact3.getLastName()).thenReturn("Smith");
+            when(mockContact3.getPhoneNumber()).thenReturn("07878765344");
+            when(mockContact3.getEmail()).thenReturn("tom@hotmail.com");
+
+            when(mockContact4.getFirstName()).thenReturn("Afrodyta");
+            when(mockContact4.getLastName()).thenReturn("Pudlo");
+            when(mockContact4.getPhoneNumber()).thenReturn("07878765345");
+            when(mockContact4.getEmail()).thenReturn("afrodytaP@hotmail.com");
+            testAddressBook.addContact(mockContact);
+            testAddressBook.addContact(mockContact2);
+            testAddressBook.addContact(mockContact3);
+            testAddressBook.addContact(mockContact4);
+
+        }
+
+        @AfterEach
+        public void tearDown() {
+            testAddressBook = null;
+            mockContact = null;
+        }
+
+        @Test
+        @Description("Requirement 5 - Test 1) Tests the searchContactsByName() returns a list of contacts with matching first and last names")
+        public void testSearchContactsByNameReturnsListOfContactsMatchingFirstAndLastNames() {
+            // Arrange
+            List<Contact> matches = testAddressBook.searchContactsByName("Afrodyta", "Pudlo");
+            // Act
+            // Assert
+            assertEquals(2, matches.size());
+        }
+    }
 }

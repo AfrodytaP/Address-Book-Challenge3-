@@ -1,6 +1,7 @@
 package com.dfcorp.addressbook;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class AddressBook {
     private static int nextID = 1;
@@ -25,5 +26,16 @@ public class AddressBook {
         if((Validation.isPhoneNumberDuplicate(contacts, contact))){ throw new IllegalArgumentException("Phone number already exists, duplicate phone numbers are not allowed");}
         if((Validation.isEmailDuplicate(contacts, contact))){ throw new IllegalArgumentException("Email already exists, duplicate emails are not allowed");}
         contacts.add(contact);
+    }
+
+    public List<Contact> searchContactsByName(String firstName, String lastName) {
+        List<Contact> matchesFound;
+        matchesFound = new ArrayList<>();
+        for (Contact contact : contacts) {
+            if (contact.getFirstName().contains(firstName) && contact.getLastName().contains(lastName)) {
+                matchesFound.add(contact);
+            }
+        }
+        return matchesFound;
     }
 }
