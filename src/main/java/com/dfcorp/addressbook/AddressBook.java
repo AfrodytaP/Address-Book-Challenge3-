@@ -58,7 +58,10 @@ public class AddressBook {
         }else {
             throw new IllegalArgumentException("Contact does not exist in the address book please try again");
         }
+    }
 
+    public void editContact(Contact contact) {
+        if(Validation.isContactNull(contact)) {throw new IllegalArgumentException("Contact cannot be null");}
     }
 
 

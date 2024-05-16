@@ -421,4 +421,49 @@ public class AddressBookTest {
             assertEquals(0, testAddressBook.getContacts().size());
         }
     }
+
+    @Nested
+    class EditContact {
+        private AddressBook testAddressBook;
+        private Contact mockContact;
+        private Contact mockContact5;
+
+        @BeforeEach
+        public void setUp() {
+            testAddressBook = new AddressBook();
+            mockContact = mock(Contact.class);
+            mockContact5 = mock(Contact.class);
+
+            when(mockContact.getFirstName()).thenReturn("Afrodyta");
+            when(mockContact.getLastName()).thenReturn("Pudlo");
+            when(mockContact.getPhoneNumber()).thenReturn("07878765342");
+            when(mockContact.getEmail()).thenReturn("afrodyta@hotmail.com");
+
+            when(mockContact5.getFirstName()).thenReturn(null);
+            when(mockContact5.getLastName()).thenReturn(null);
+            when(mockContact5.getPhoneNumber()).thenReturn(null);
+            when(mockContact5.getEmail()).thenReturn(null);
+
+            testAddressBook.addContact(mockContact);
+
+        }
+
+        @AfterEach
+        public void tearDown() {
+            testAddressBook = null;
+            mockContact = null;
+            mockContact5 = null;
+        }
+
+        @Test
+        @Description("Requirement 8 - Test 1) Tests the editContact() throws an exception when contact are null")
+        public void testEditContactThrowsExceptionWhenContactAreNull() {
+            // Arrange
+            String expectedMessage = "Contact cannot be null";
+            // Act
+            // Assert
+            assertEquals(expectedMessage, assertThrows(IllegalArgumentException.class, () -> testAddressBook.editContact(null)).getMessage());
+        }
+
+    }
 }
