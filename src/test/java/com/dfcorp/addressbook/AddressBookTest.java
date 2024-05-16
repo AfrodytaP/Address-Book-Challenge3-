@@ -341,4 +341,76 @@ public class AddressBookTest {
 
         }
     }
+
+    @Nested
+    class DeleteContact {
+        private AddressBook testAddressBook;
+        private AddressBook testAddressBook2;
+        private Contact mockContact;
+        private Contact mockContact2;
+        private Contact mockContact3;
+        private Contact mockContact4;
+        private PrintStream mockPrintStream;
+
+        @BeforeEach
+        public void setUp() {
+            testAddressBook = new AddressBook();
+            testAddressBook2 = new AddressBook();
+            mockContact = mock(Contact.class);
+            mockContact2 = mock(Contact.class);
+            mockContact3 = mock(Contact.class);
+            mockContact4 = mock(Contact.class);
+            mockPrintStream = mock(PrintStream.class);
+            System.setOut(mockPrintStream);
+
+            when(mockContact.getFirstName()).thenReturn("Afrodyta");
+            when(mockContact.getLastName()).thenReturn("Pudlo");
+            when(mockContact.getPhoneNumber()).thenReturn("07878765342");
+            when(mockContact.getEmail()).thenReturn("afrodyta@hotmail.com");
+
+            when(mockContact2.getFirstName()).thenReturn("Afrodyta");
+            when(mockContact2.getLastName()).thenReturn("Smith");
+            when(mockContact2.getPhoneNumber()).thenReturn("07878765343");
+            when(mockContact2.getEmail()).thenReturn("afrodytaSmith@hotmail.com");
+
+            when(mockContact3.getFirstName()).thenReturn("Tom");
+            when(mockContact3.getLastName()).thenReturn("Smith");
+            when(mockContact3.getPhoneNumber()).thenReturn("07878765344");
+            when(mockContact3.getEmail()).thenReturn("tom@hotmail.com");
+
+            when(mockContact4.getFirstName()).thenReturn("Afrodyta");
+            when(mockContact4.getLastName()).thenReturn("Pudlo");
+            when(mockContact4.getPhoneNumber()).thenReturn("07878765345");
+            when(mockContact4.getEmail()).thenReturn("afrodytaP@hotmail.com");
+            testAddressBook.addContact(mockContact);
+            testAddressBook.addContact(mockContact2);
+            testAddressBook.addContact(mockContact3);
+            testAddressBook.addContact(mockContact4);
+
+        }
+
+        @AfterEach
+        public void tearDown() {
+            testAddressBook = null;
+            testAddressBook2 = null;
+            mockContact = null;
+            mockContact2 = null;
+            mockContact3 = null;
+            mockContact4 = null;
+            mockPrintStream = null;
+            System.setOut(System.out);
+        }
+
+        @Test
+        @Description("Requirement 7 - Test 1) Tests the deletesContacts() throws an exception when contact are null")
+        public void testDeleteContactsThrowsExceptionWhenContactAreNull() {
+            // Arrange
+            String expectedMessage = "Contact cannot be null";
+            // Act
+            // Assert
+            assertEquals(expectedMessage, assertThrows(IllegalArgumentException.class, () -> testAddressBook.deleteContact(null)).getMessage());
+
+        }
+
+    }
 }
