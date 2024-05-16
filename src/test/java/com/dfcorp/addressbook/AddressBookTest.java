@@ -346,18 +346,12 @@ public class AddressBookTest {
     class DeleteContact {
         private AddressBook testAddressBook;
         private Contact mockContact;
-        private Contact mockContact2;
-        private Contact mockContact3;
-        private Contact mockContact4;
         private Contact mockContact5;
 
         @BeforeEach
         public void setUp() {
             testAddressBook = new AddressBook();
             mockContact = mock(Contact.class);
-            mockContact2 = mock(Contact.class);
-            mockContact3 = mock(Contact.class);
-            mockContact4 = mock(Contact.class);
             mockContact5 = mock(Contact.class);
 
             when(mockContact.getFirstName()).thenReturn("Afrodyta");
@@ -365,30 +359,12 @@ public class AddressBookTest {
             when(mockContact.getPhoneNumber()).thenReturn("07878765342");
             when(mockContact.getEmail()).thenReturn("afrodyta@hotmail.com");
 
-            when(mockContact2.getFirstName()).thenReturn("Afrodyta");
-            when(mockContact2.getLastName()).thenReturn("Smith");
-            when(mockContact2.getPhoneNumber()).thenReturn("07878765343");
-            when(mockContact2.getEmail()).thenReturn("afrodytaSmith@hotmail.com");
-
-            when(mockContact3.getFirstName()).thenReturn("Tom");
-            when(mockContact3.getLastName()).thenReturn("Smith");
-            when(mockContact3.getPhoneNumber()).thenReturn("07878765344");
-            when(mockContact3.getEmail()).thenReturn("tom@hotmail.com");
-
-            when(mockContact4.getFirstName()).thenReturn("Afrodyta");
-            when(mockContact4.getLastName()).thenReturn("Pudlo");
-            when(mockContact4.getPhoneNumber()).thenReturn("07878765345");
-            when(mockContact4.getEmail()).thenReturn("afrodytaP@hotmail.com");
-
             when(mockContact5.getFirstName()).thenReturn(null);
             when(mockContact5.getLastName()).thenReturn(null);
             when(mockContact5.getPhoneNumber()).thenReturn(null);
             when(mockContact5.getEmail()).thenReturn(null);
 
             testAddressBook.addContact(mockContact);
-            testAddressBook.addContact(mockContact2);
-            testAddressBook.addContact(mockContact3);
-            testAddressBook.addContact(mockContact4);
 
         }
 
@@ -396,15 +372,12 @@ public class AddressBookTest {
         public void tearDown() {
             testAddressBook = null;
             mockContact = null;
-            mockContact2 = null;
-            mockContact3 = null;
-            mockContact4 = null;
             mockContact5 = null;
         }
 
         @Test
-        @Description("Requirement 7 - Test 1) Tests the deletesContacts() throws an exception when contact are null")
-        public void testDeleteContactsThrowsExceptionWhenContactAreNull() {
+        @Description("Requirement 7 - Test 1) Tests the deletesContact() throws an exception when contact are null")
+        public void testDeleteContactThrowsExceptionWhenContactAreNull() {
             // Arrange
             String expectedMessage = "Contact cannot be null";
             // Act
@@ -414,8 +387,8 @@ public class AddressBookTest {
         }
 
         @Test
-        @Description("Requirement 7 - Test 4) Tests the deletesContacts() throws an exception when contact are empty")
-        public void testDeleteContactsThrowsExceptionWhenContactAreEmpty() {
+        @Description("Requirement 7 - Test 4) Tests the deletesContact() throws an exception when contact are empty")
+        public void testDeleteContactThrowsExceptionWhenContactAreEmpty() {
             // Arrange
             String expectedMessage = "Contact cannot be empty";
             // Act
@@ -425,8 +398,8 @@ public class AddressBookTest {
         }
 
         @Test
-        @Description("Requirement 7 - Test 5) Tests the deletesContacts() throws an exception when contact is not in the address book")
-        public void testDeleteContactsThrowsExceptionWhenContactIsNotInTheAddressBook() {
+        @Description("Requirement 7 - Test 5) Tests the deletesContact() throws an exception when contact is not in the address book")
+        public void testDeleteContactThrowsExceptionWhenContactIsNotInTheAddressBook() {
             // Arrange
             when(mockContact5.getFirstName()).thenReturn("Alex");
             when(mockContact5.getLastName()).thenReturn("Hill");
@@ -436,6 +409,16 @@ public class AddressBookTest {
             // Assert
             assertEquals("Contact does not exist in the address book please try again", assertThrows(IllegalArgumentException.class, () -> testAddressBook.deleteContact(mockContact5)).getMessage());
 
+        }
+
+        @Test
+        @Description("Requirement 7 - Test 6) Tests the deletesContact() removes contact from the address book when contact is in the address book")
+        public void testDeleteContactRemovesContactFromTheAddressBookWhenContactIsInTheAddressBook() {
+            // Arrange
+            // Act
+            testAddressBook.deleteContact(mockContact);
+            // Assert
+            assertEquals(0, testAddressBook.getContacts().size());
         }
     }
 }
