@@ -53,16 +53,16 @@ public class AddressBook {
     public void deleteContact(Contact contact) {
         if(Validation.isContactNull(contact)) {throw new IllegalArgumentException("Contact cannot be null");}
         if(Validation.isContactEmpty(contact)) {throw new IllegalArgumentException("Contact cannot be empty");}
-        if(contacts.contains(contact)){
-            contacts.remove(contact);
-        }else {
-            throw new IllegalArgumentException("Contact does not exist in the address book please try again");
-        }
+        if(!contacts.contains(contact)){throw new IllegalArgumentException("Contact does not exist in the address book please try again");}
+        contacts.remove(contact);
     }
 
-    public void editContact(Contact contact) {
-        if(Validation.isContactNull(contact)) {throw new IllegalArgumentException("Contact cannot be null");}
-        if(Validation.isContactEmpty(contact)) {throw new IllegalArgumentException("Contact cannot be empty");}
+    public void editContact(Contact currentContact, Contact newContact) {
+        if( Validation.isContactNull(newContact)) {throw new IllegalArgumentException("Contact cannot be null");}
+        if( Validation.isContactEmpty(newContact)) {throw new IllegalArgumentException("Contact cannot be empty");}
+        int index = contacts.indexOf(currentContact);
+        if(index == -1){throw new IllegalArgumentException("Contact does not exist in the address book please try again");}
+        contacts.set(index, newContact);
     }
 
 

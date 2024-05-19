@@ -426,18 +426,25 @@ public class AddressBookTest {
     class EditContact {
         private AddressBook testAddressBook;
         private Contact mockContact;
+        private Contact mockContact2;
         private Contact mockContact5;
 
         @BeforeEach
         public void setUp() {
             testAddressBook = new AddressBook();
             mockContact = mock(Contact.class);
+            mockContact2 = mock(Contact.class);
             mockContact5 = mock(Contact.class);
 
             when(mockContact.getFirstName()).thenReturn("Afrodyta");
             when(mockContact.getLastName()).thenReturn("Pudlo");
             when(mockContact.getPhoneNumber()).thenReturn("07878765342");
             when(mockContact.getEmail()).thenReturn("afrodyta@hotmail.com");
+
+            when(mockContact2.getFirstName()).thenReturn("Ann");
+            when(mockContact2.getLastName()).thenReturn("Thompson");
+            when(mockContact2.getPhoneNumber()).thenReturn("07878765399");
+            when(mockContact2.getEmail()).thenReturn("ann@hotmail.com");
 
             when(mockContact5.getFirstName()).thenReturn(null);
             when(mockContact5.getLastName()).thenReturn(null);
@@ -462,7 +469,7 @@ public class AddressBookTest {
             String expectedMessage = "Contact cannot be null";
             // Act
             // Assert
-            assertEquals(expectedMessage, assertThrows(IllegalArgumentException.class, () -> testAddressBook.editContact(null)).getMessage());
+            assertEquals(expectedMessage, assertThrows(IllegalArgumentException.class, () -> testAddressBook.editContact(null,null)).getMessage());
         }
 
         @Test
@@ -472,7 +479,18 @@ public class AddressBookTest {
             String expectedMessage = "Contact cannot be empty";
             // Act
             // Assert
-            assertEquals(expectedMessage, assertThrows(IllegalArgumentException.class, () -> testAddressBook.editContact(mockContact5)).getMessage());
+            assertEquals(expectedMessage, assertThrows(IllegalArgumentException.class, () -> testAddressBook.editContact(mockContact, mockContact5)).getMessage());
+        }
+
+        @Test
+        @Description("Requirement 8 - Test 3) Tests the editContact() throws an exception when contact is not in the address book")
+        public void testEditContactThrowsExceptionWhenContactIsNotInTheAddressBook() {
+            // Arrange
+            String expectedMessage = "Contact does not exist in the address book please try again";
+            // Act
+            // Assert
+            assertEquals(expectedMessage, assertThrows(IllegalArgumentException.class, () -> testAddressBook.editContact(mockContact2, mockContact)).getMessage());
+
         }
 
     }
