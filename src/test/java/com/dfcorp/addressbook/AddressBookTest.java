@@ -419,6 +419,15 @@ public class AddressBookTest {
             // Assert
             assertEquals(0, testAddressBook.getContacts().size());
         }
+
+        @Test
+        @Description("Requirement 7 - Test 7) Tests the deletesContact() returns true when contact is deleted")
+        public void testDeleteContactReturnsTrueWhenContactIsDeleted() {
+            // Arrange
+            // Act
+            // Assert
+            assertTrue(testAddressBook.deleteContact(mockContact));
+        }
     }
 
     @Nested
