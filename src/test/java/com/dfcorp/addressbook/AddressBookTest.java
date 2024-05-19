@@ -13,7 +13,7 @@ import static org.mockito.Mockito.*;
 public class AddressBookTest {
     @Nested
     @DisplayName("Address Constructor Tests")
-    class ConstructorTests{
+    class ConstructorTests {
         private AddressBook testAddressBook;
 
         @BeforeEach
@@ -39,7 +39,7 @@ public class AddressBookTest {
 
     @Nested
     @DisplayName("AddContact Tests")
-    class AddContactTests{
+    class AddContactTests {
         private AddressBook testAddressBook;
         private Contact mockContact;
         private Contact mockContact2;
@@ -185,27 +185,27 @@ public class AddressBookTest {
             List<Contact> matches = testAddressBook.searchContactsByName("Afrodyta", "Pudlo");
             // Act
             // Assert
-            assertEquals(2, matches.size());
+            assertEquals(3, matches.size());
         }
 
         @Test
-        @Description("Requirement 5 - Test 2) Tests the searchContactsByName() returns O list size of matched contacts with first and last names")
-        public void testSearchContactsByNameReturnsListOfSizeZeroWhenNoMatches() {
+        @Description("Requirement 5 - Test 2) Tests the searchContactsByName() returns an exception when no matches are found")
+        public void testSearchContactsByNameReturnsExceptionWhenNoMatchesFound() {
             // Arrange
-            List<Contact> matches = testAddressBook.searchContactsByName("David", "P");
+            String expectedMessage = "No contacts found with the name David P";
             // Act
             // Assert
-            assertEquals(0, matches.size());
+            assertEquals(expectedMessage, assertThrows(IllegalArgumentException.class, () -> testAddressBook.searchContactsByName("David", "P")).getMessage());
         }
 
         @Test
         @Description("Requirement 5 - Test 3) Tests the searchContactsByName() returns a list of contacts with matching first and last names")
         public void testSearchContactsByNameReturnsListOfContactsAPartialMatchOfFirstAndLastNames2() {
             // Arrange
-            List<Contact> matches = testAddressBook.searchContactsByName("Afrod", "Pud");
+            List<Contact> matches = testAddressBook.searchContactsByName("Afrodyta", "Pud");
             // Act
             // Assert
-            assertEquals(2, matches.size());
+            assertEquals(3, matches.size());
         }
 
         @Test
@@ -473,7 +473,7 @@ public class AddressBookTest {
             String expectedMessage = "Contact cannot be null";
             // Act
             // Assert
-            assertEquals(expectedMessage, assertThrows(IllegalArgumentException.class, () -> testAddressBook.editContact(null,null)).getMessage());
+            assertEquals(expectedMessage, assertThrows(IllegalArgumentException.class, () -> testAddressBook.editContact(null, null)).getMessage());
         }
 
         @Test

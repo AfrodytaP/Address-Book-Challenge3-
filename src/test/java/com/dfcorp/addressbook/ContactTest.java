@@ -42,15 +42,9 @@ public class ContactTest {
             String invalidPhoneNumber = "07878765342ss";
             String invalidEmail = "afrodytahotmail.com";
 
-
             // Assert
             assertThrows(IllegalArgumentException.class, () -> new Contact(invalidFirstName, invalidLastName, invalidPhoneNumber, invalidEmail));
-
-
         }
-
-
-
 
     }
 

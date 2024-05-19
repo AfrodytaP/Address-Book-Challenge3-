@@ -214,7 +214,7 @@ public class ValidationTest {
         @Description("Requirement 6 - Test 2) Tests the isContactsNull() return false when contacts are Valid")
         public void testIsContactsNullReturnsFalseWhenContactsAreValid() {
             // Arrange
-            ArrayList<Contact> contacts = ( mockAddressBook.getContacts());
+            ArrayList<Contact> contacts = (mockAddressBook.getContacts());
             // Act
             // Assert
             assertFalse(Validation.isContactsNull(contacts));
@@ -224,7 +224,7 @@ public class ValidationTest {
         @Description("Requirement 6 - Test 3) Tests the isContactsEmpty() return true when contacts are empty")
         public void testIsContactsEmptyReturnsTrueWhenContactsAreEmpty() {
             // Arrange
-            ArrayList<Contact> contacts = ( mockAddressBook2.getContacts());
+            ArrayList<Contact> contacts = (mockAddressBook2.getContacts());
             // Act
             // Assert
             assertTrue(Validation.isContactsEmpty(contacts));
@@ -232,9 +232,9 @@ public class ValidationTest {
 
         @Test
         @Description("Requirement 6 - Test 4) Tests the isContactsEmpty() return false when contacts are not empty")
-            public void testIsContactsEmptyReturnsFalseWhenContactsAreNotEmpty() {
+        public void testIsContactsEmptyReturnsFalseWhenContactsAreNotEmpty() {
             // Arrange
-            ArrayList<Contact> contacts = ( mockAddressBook.getContacts());
+            ArrayList<Contact> contacts = (mockAddressBook.getContacts());
             // Act
             // Assert
             assertTrue(Validation.isContactsEmpty(contacts));
@@ -280,7 +280,7 @@ public class ValidationTest {
         }
 
         @Test
-            @Description("Requirement 7 - Test 3) Tests the isContactEmpty() return false when contact is not empty")
+        @Description("Requirement 7 - Test 3) Tests the isContactEmpty() return false when contact is not empty")
         public void testIsContactEmptyReturnsFalseWhenContactIsNotEmpty() {
             // Arrange
             // Act
