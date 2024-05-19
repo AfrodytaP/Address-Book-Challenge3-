@@ -2,7 +2,6 @@ package com.dfcorp.addressbook;
 
 import jdk.jfr.Description;
 import org.junit.jupiter.api.*;
-import org.junit.platform.commons.util.BlacklistedExceptions;
 
 import java.io.PrintStream;
 import java.util.ArrayList;
@@ -16,18 +15,15 @@ public class AddressBookTest {
     @DisplayName("Address Constructor Tests")
     class ConstructorTests{
         private AddressBook testAddressBook;
-        private AddressBook testAddressBook2;
 
         @BeforeEach
         public void setUp() {
             testAddressBook = new AddressBook();
-            testAddressBook2 = new AddressBook();
         }
 
         @AfterEach
         public void tearDown() {
             testAddressBook = null;
-            testAddressBook2 = null;
         }
 
         @Test
@@ -522,4 +518,5 @@ public class AddressBookTest {
             assertNotEquals(oldContactFirstName, replacedContactFirstName);
         }
     }
+
 }
