@@ -493,12 +493,24 @@ public class AddressBookTest {
         }
 
         @Test
-        @Description("Requirement 8 - Test 3) Tests the editContact() if input is valid contact is edited and returns true")
+        @Description("Requirement 8 - Test 4) Tests the editContact() if input is valid contact is edited and returns true")
         public void testEditContactReturnsTrueWhenContactIsEdited() {
             // Arrange
             // Act
             // Assert
             assertTrue(testAddressBook.editContact(mockContact, mockContact2));
+        }
+
+        @Test
+        @Description("Requirement 8 - Test 5) Tests the editContact() checks if contact is replaced with newContact")
+        public void testEditContactReplacesContactWithNewContact() {
+            // Arrange
+            String oldContactFirstName = testAddressBook.getContacts().get(0).getFirstName();
+            // Act
+            testAddressBook.editContact(mockContact, mockContact2);
+            String replacedContactFirstName = testAddressBook.getContacts().get(0).getFirstName();
+            // Assert
+            assertNotEquals(oldContactFirstName, replacedContactFirstName);
         }
     }
 }
