@@ -57,12 +57,13 @@ public class AddressBook {
         contacts.remove(contact);
     }
 
-    public void editContact(Contact currentContact, Contact newContact) {
+    public boolean editContact(Contact currentContact, Contact newContact) {
         if( Validation.isContactNull(newContact)) {throw new IllegalArgumentException("Contact cannot be null");}
         if( Validation.isContactEmpty(newContact)) {throw new IllegalArgumentException("Contact cannot be empty");}
         int index = contacts.indexOf(currentContact);
         if(index == -1){throw new IllegalArgumentException("Contact does not exist in the address book please try again");}
         contacts.set(index, newContact);
+        return true;
     }
 
 

@@ -8,8 +8,7 @@ import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 public class AddressBookTest {
@@ -493,5 +492,13 @@ public class AddressBookTest {
 
         }
 
+        @Test
+        @Description("Requirement 8 - Test 3) Tests the editContact() if input is valid contact is edited and returns true")
+        public void testEditContactReturnsTrueWhenContactIsEdited() {
+            // Arrange
+            // Act
+            // Assert
+            assertTrue(testAddressBook.editContact(mockContact, mockContact2));
+        }
     }
 }
