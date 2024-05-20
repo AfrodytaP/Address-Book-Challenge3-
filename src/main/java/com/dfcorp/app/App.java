@@ -47,7 +47,7 @@ public class App {
         }
     }
 
-    public static void displayMenu() {
+    private static void displayMenu() {
         System.out.println("Welcome to the Address Book Application!");
         System.out.println("Below is a list of options you can choose from:");
         System.out.println("1) To add a contact");
@@ -59,7 +59,7 @@ public class App {
         System.out.println("Please choose an option from 1 to 6:");
     }
 
-    public static void addContact() {
+    private static void addContact() {
         Contact contact;
         System.out.println("Adding a new contact to the address book, please enter the following details:");
 

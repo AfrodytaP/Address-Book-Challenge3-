@@ -87,6 +87,4 @@ public abstract class Validation {
         }
         return false;
     }
-
-
 }
