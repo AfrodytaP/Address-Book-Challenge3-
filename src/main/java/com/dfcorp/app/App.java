@@ -93,7 +93,7 @@ public class App {
                 return;
             }
             System.out.println("Contacts found with the name " + firstName + " " + lastName + ":");
-            addressBook.displayContacts(foundContacts);
+            System.out.println(addressBook.displayContacts(foundContacts));
         } catch (IllegalArgumentException e) {
             System.out.println("Error " + e.getMessage());
         }
@@ -163,7 +163,7 @@ public class App {
                 return;
             }
             System.out.println("All contacts in the address book:");
-            addressBook.displayContacts(contacts);
+            System.out.println(addressBook.displayContacts(contacts));
         } catch (IllegalArgumentException e) {
             System.out.println("Error " + e.getMessage());
         }
